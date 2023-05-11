@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Cdo;
 
 class User extends Authenticatable
 {
@@ -18,12 +19,19 @@ class User extends Authenticatable
         'cdo_id',
         'role',
         'password',
-        'address'
+        'address',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+
+    public function cdo()
+    {
+        return $this->belongsTo(Cdo::class);
+    }
+
 
 }

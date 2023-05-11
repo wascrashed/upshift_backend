@@ -7,35 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+
     use HasFactory;
-    public function saveFile($file)
-    {
-        $name = $file->getClientOriginalName();
-        $path = $file->store('public/files');
-        $this->name = $name;
-        $this->path = $path;
-        $this->save();
-    }
+    protected $table = 'projects';
+
     protected $fillable = [
+        'imagePath',
         'title',
         'location' ,
-         'status' ,
-         'mentor' ,
-         'partner' ,
-         'qttOfBoys',
-         'qttOfGirls',
-         'startDate',
-         'finishDate',
-         'problemBackground',
+        'status' ,
+        'mentor' ,
+        'partner' ,
+        'qttOfBoys',
+        'qttOfGirls',
+        'startDate',
+        'finishDate',
+        'problemBackground',
         'problemDescription',
         'problemSolution',
         'problemInnovation',
-         'equipmentPrice',
-         'transportPrice',
-         'servicesPrice',
-         'rentPrice' ,
-         'rawPrice' ,
-         'otherPrice',
-         'resources'];
-
+        'equipmentPrice',
+        'transportPrice',
+        'servicesPrice',
+        'rentPrice' ,
+        'rawPrice' ,
+        'otherPrice',
+        'resources'
+    ];
 }

@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
@@ -16,10 +14,35 @@ class UserController extends Controller
      */
     public function index()
     {
-        $User = User::orderBy('id', 'desc')->paginate(8);
-        return UserResource::collection($User);
+        $users = User::with('Cdo')->get();
+        $data = [];
+
+        foreach ($users as $user) {
+            $cdoName = $user->Cdo ? $user->cdo->name : 'N/A';
+            $data[] = [
+                'id' => $user->id,
+                'fullName' => $user->fullName,
+                'phoneNumber' => $user->phoneNumber,
+                'role' => $user->role,
+                'address' => $user->address,
+                'cdo_name' => $cdoName
+            ];
+        }
+
+        return response()->json(['users' => $data]);
     }
 
+    public function show($api_token)
+    {
+        $user = User::where('api_token', $api_token)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        return response()->json($user);
+
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -40,11 +63,6 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $User)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */

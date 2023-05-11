@@ -15,9 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-
-            $table->string('name');
-            $table->string('path');
+            $table->text('imagePath')->nullable();
             $table->string('title');
             $table->string('location');
             $table->string('status');
@@ -38,8 +36,6 @@ class CreateProjectsTable extends Migration
             $table->integer('rawPrice');
             $table->integer('otherPrice');
             $table->string('resources');
-
-
             $table->timestamps();
         });
     }

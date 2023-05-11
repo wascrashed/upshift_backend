@@ -41,7 +41,7 @@ class CdoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cdo $Cdo)
+    public function show(Cdo $Cdo) 
     {
         //
     }

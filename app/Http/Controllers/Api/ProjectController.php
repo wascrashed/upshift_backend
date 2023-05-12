@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 
 use App\Models\Project;
+use App\Models\Files;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectResource;
 use Illuminate\Database\Eloquent\Model;
@@ -20,8 +21,9 @@ class ProjectController extends Controller
     }
 
     ////create
-    public function store(Request $request)
+        public function store(Request $request)
     {
+        // Добавление проекта
         $project = new Project();
         $project->fill($request->all());
 
@@ -31,10 +33,27 @@ class ProjectController extends Controller
         }
 
         $project->save();
-        return response()->json(['message' => 'Project created successfully!', 'project' => $project], 201);
 
-    }
+        // Добавление файлов
+        $files = $request->file('files');
 
+        if ($files) {
+            foreach ($files as $file) {
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('uploads'), $filename);
+                $url = asset('uploads/' . $filename);
+
+                // Создаем запись в базе данных
+                $file = new Files([
+                    'fileName' => $filename,
+                    'url' => $url
+                ]);
+                $project->files()->save($file);
+            }
+        }
+
+    return response()->json(['message' => 'Project created successfully!', 'project' => $project], 201);
+}
         public function show($id)
         {
             $photo = Project::find($id);

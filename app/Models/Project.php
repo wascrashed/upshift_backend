@@ -34,4 +34,8 @@ class Project extends Model
         'otherPrice',
         'resources'
     ];
+    public function files()
+{
+    return $this->hasMany(Files::class);
+}
 }

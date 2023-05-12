@@ -14,22 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('Cdo')->get();
-        $data = [];
 
-        foreach ($users as $user) {
-            $cdoName = $user->Cdo ? $user->cdo->name : 'N/A';
-            $data[] = [
-                'id' => $user->id,
-                'fullName' => $user->fullName,
-                'phoneNumber' => $user->phoneNumber,
-                'role' => $user->role,
-                'address' => $user->address,
-                'cdo_name' => $cdoName
-            ];
-        }
+        $user = User::orderBy('id', 'desc')->paginate(8);
+        return UserResource::collection($user);
 
-        return response()->json(['users' => $data]);
     }
 
     public function show($api_token)

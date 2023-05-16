@@ -48,7 +48,7 @@ class LoginController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
-            ], 500);
+            ], 401);
         }
     }
 

@@ -30,7 +30,7 @@ Route::post('/auth/register', [RegisterController::class, 'createUser']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('auth:sanctum')->group(function () {
+///Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [LogOutController::class, 'logout']) ;
 ///api
 Route::get('/user/show', function (Request $request) {
@@ -59,5 +59,5 @@ Route::get('/user/show', function (Request $request) {
     Route::get('search-cdo/{name}', [CdoController::class , "search"]) ;
     Route::get('search-user/{fullName}', [UserController::class , "search"]);
     Route::get('search-partner/{fullName}', [PartnerController::class , "search"]);
-});
+//});
 

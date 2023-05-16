@@ -7,29 +7,30 @@ class StoreProjectRequest extends FormRequest
 {
 
     public function rules()
-    {
-        return [
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'title'=> 'required',
-            'location'=> 'required',
-            'status'=> 'required' ,
-            'mentor'=> 'required' ,
-            'partner'=> 'required' ,
-            'qttOfBoys'=> 'required',
-            'qttOfGirls'=> 'required',
-            'startDate'=> 'required',
-            'finishDate'=> 'required' ,
-            'problemBackground'=> 'required',
-            'problemDescription'=> 'required',
-            'problemSolution'=> 'required',
-            'problemInnovation'=> 'required',
-            'equipmentPrice'=> 'required',
-            'transportPrice'=> 'required',
-            'servicesPrice'=> 'required',
-            'rentPrice' => 'required',
-            'rawPrice' => 'required',
-            'otherPrice'=> 'required',
-            'resources'=> 'required'
-        ];
-    }
+{
+    return [
+        'title' => 'required|string|max:255',
+        'location' => 'required|string|max:255',
+        'status' => 'required|string|max:255',
+        'mentor' => 'required|integer',
+        'partner' => 'required|integer',
+        'qttOfBoys' => 'required|integer',
+        'qttOfGirls' => 'required|integer',
+        'startDate' => 'required|dateTime',
+        'finishDate' => 'required|dateTime',
+        'problemBackground' => 'required|text',
+        'problemDescription' => 'required|text',
+        'problemSolution' => 'required|text',
+        'problemInnovation' => 'required|text',
+        'equipmentPrice' => 'required|integer|min:0',
+        'transportPrice' => 'required|integer|min:0',
+        'servicesPrice' => 'required|integer|min:0',
+        'rentPrice' => 'required|integer|min:0',
+        'rawPrice' => 'required|integer|min:0',
+        'otherPrice' => 'required|integer|min:0',
+        'resources' => 'required|text',
+        'photo' => 'nullable|image',
+        'files.*' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:10000',
+    ];
+}
 }

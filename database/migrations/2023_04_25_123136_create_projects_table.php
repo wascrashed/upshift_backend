@@ -25,17 +25,17 @@ class CreateProjectsTable extends Migration
             $table->integer('qttOfGirls');
             $table->dateTime('startDate');
             $table->dateTime('finishDate');
-            $table->string('problemBackground');
-            $table->string('problemDescription');
-            $table->string('problemSolution');
-            $table->string('problemInnovation');
+            $table->text('problemBackground');
+            $table->text('problemDescription');
+            $table->text('problemSolution');
+            $table->text('problemInnovation');
             $table->integer('equipmentPrice');
             $table->integer('transportPrice');
             $table->integer('servicesPrice');
             $table->integer('rentPrice');
             $table->integer('rawPrice');
             $table->integer('otherPrice');
-            $table->string('resources');
+            $table->text('resources');
             $table->timestamps();
         });
     }

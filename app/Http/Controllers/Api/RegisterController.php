@@ -31,7 +31,7 @@ class RegisterController extends Controller
                     'status' => false,
                     'message' => 'validation error',
                     'errors' => $validateUser->errors()
-                ], 401);
+                ], 409);
             }
 
             $user = User::create([
@@ -54,7 +54,7 @@ class RegisterController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => $th->getMessage()
-            ], 500);
+            ], 401);
         }
     }
 

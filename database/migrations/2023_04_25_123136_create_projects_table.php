@@ -19,10 +19,6 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->string('location');
             $table->string('status');
-            $table->integer('mentor');
-            $table->integer('partner');
-            $table->integer('qttOfBoys');
-            $table->integer('qttOfGirls');
             $table->dateTime('startDate');
             $table->dateTime('finishDate');
             $table->text('problemBackground');
@@ -36,6 +32,10 @@ class CreateProjectsTable extends Migration
             $table->integer('rawPrice');
             $table->integer('otherPrice');
             $table->text('resources');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('partner_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('partner_id')->references('id')->on('partners');
             $table->timestamps();
         });
     }

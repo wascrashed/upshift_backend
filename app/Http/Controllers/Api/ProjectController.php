@@ -35,7 +35,7 @@ class ProjectController extends Controller
         $project->save();
 
         // Добавление файлов
-        $files = $request->file('files');
+        $files = $request->file('files');;
 
         if ($files) {
             foreach ($files as $file) {
@@ -73,8 +73,9 @@ class ProjectController extends Controller
             //
         }
 
-        public function update(StoreProjectRequest $request, Project $project)
+        public function update(Request $request, Project $project)
         {
+           ///   dd($request);
             $project->fill($request->all());
             if ($request->hasFile('photo')) {
                 $path = $request->file('photo')->store('photos');

@@ -17,6 +17,7 @@ class User extends Authenticatable
         'fullName',
         'phoneNumber',
         'cdo_id',
+        'partner_id',
         'role',
         'password',
         'address',
@@ -31,6 +32,14 @@ class User extends Authenticatable
     public function cdo()
     {
         return $this->belongsTo(Cdo::class);
+    }
+    public function project()
+    {
+            return $this->belongsTo(Project::class);
+    }
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
     }
 
 

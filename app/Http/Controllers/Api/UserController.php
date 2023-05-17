@@ -83,9 +83,10 @@ class UserController extends Controller
         $User->delete();
         return response(null , 204);
     }
-     function search($User)
+     function search($user)
     {
-        return User::where("fullName" ,'LIKE' , '%' . $User. '%')->orderBy('id', 'desc')->paginate(8);
+        $result = User::where("fullName" ,'LIKE' , '%' . $user. '%')->orderBy('id', 'desc')->paginate(8);
+        return UserResource::collection($result);
 
     }
 }

@@ -14,8 +14,9 @@ class AddCdoIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('cdo_id')->nullable();
+            $table->unsignedBigInteger('cdo_id');
             $table->foreign('cdo_id')->references('id')->on('cdos')->onDelete('cascade');
+            $table->foreignId('partner_id')->constrained();
         });
     }
 
@@ -28,6 +29,8 @@ class AddCdoIdToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['cdo_id']);
+            $table->dropColumn('cdo_id');
+            $table->dropForeign(['partner_id']);
             $table->dropColumn('cdo_id');
         });
     }

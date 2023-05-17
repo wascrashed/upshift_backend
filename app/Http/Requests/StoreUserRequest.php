@@ -27,7 +27,8 @@ class StoreUserRequest extends FormRequest
             'fullName' => ['required' , 'max:70'] ,
             'phoneNumber' => ['required'] ,
             'role' => ['required'],
-            ' Cdo_id' => ['required'],
+            'cdo_id' => ['required'],
+            'partner_id' => ['required'],
             'password' => ['required'],
             'address' => ['required']
         ];

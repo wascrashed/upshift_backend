@@ -16,10 +16,8 @@ class Project extends Model
         'title',
         'location' ,
         'status' ,
-        'mentor' ,
-        'partner' ,
-        'qttOfBoys',
-        'qttOfGirls',
+        'user_id' ,
+        'partner_id' ,
         'startDate',
         'finishDate',
         'problemBackground',
@@ -38,4 +36,13 @@ class Project extends Model
 {
     return $this->hasMany(Files::class);
 }
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function partners()
+    {
+        return $this->hasMany(Partner::class);
+    }
 }

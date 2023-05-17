@@ -20,7 +20,8 @@ class RegisterController extends Controller
                 [
                     'fullName' => 'required',
                     'phoneNumber' => ['required ', 'unique:users'],
-                    'cdo_id' => 'required',
+                    'cdo_id' => 'nullable',
+                    'partner_id' => 'nullable',
                     'role' => 'required',
                     'password' => 'required',
                     'address'=> 'required',
@@ -38,6 +39,7 @@ class RegisterController extends Controller
                 'fullName' => $request->fullName    ,
                 'phoneNumber' => $request->phoneNumber,
                 'cdo_id' => $request->cdo_id,
+                'partner_id' => $request->partner_id,
                 'role' => $request->role,
                 'password' => Hash::make($request->password),
                 'address'=> $request->address,
